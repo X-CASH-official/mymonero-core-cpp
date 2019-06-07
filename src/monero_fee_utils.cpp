@@ -75,11 +75,8 @@ uint64_t monero_fee_utils::get_upper_transaction_weight_limit(
 ) {
 	if (upper_transaction_weight_limit__or_0_for_default > 0)
 		return upper_transaction_weight_limit__or_0_for_default;
-	uint64_t full_reward_zone = use_fork_rules_fn(5, 10) ? CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5 : use_fork_rules_fn(2, 10) ? CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2 : CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1;
-	if (use_fork_rules_fn(8, 10))
-		return full_reward_zone / 2 - CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE;
 	else
-		return full_reward_zone - CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE;
+		return 149400; // CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5 / 2 - CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE
 }
 uint64_t monero_fee_utils::get_fee_multiplier(
 	uint32_t priority,
